@@ -8,7 +8,11 @@ export default defineConfig({
   plugins: [vue()],
   css: {
     preprocessorOptions: {
-      scss: { additionalData: `@import "src/scss/app.scss` },
+      scss: {
+        additionalData: `@import "src/scss/app.scss";
+      @import "src/scss/reset.scss";
+      `,
+      },
     },
   },
   resolve: {

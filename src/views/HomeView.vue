@@ -1,7 +1,9 @@
-<script setup></script>
+<script setup>
+import InputComponent from "../components/InputComponent.vue";
+</script>
 
 <template>
   <main>
-    <h1>Home</h1>
+    <InputComponent type="text" label="Escolha o seu Pokémon!" id="pokemon" />
   </main>
 </template>
