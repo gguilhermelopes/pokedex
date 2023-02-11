@@ -1,12 +1,24 @@
 <script setup>
 import SvgIcon from "./icons/SvgIcon.vue";
 import { RouterLink } from "vue-router";
+import { usePokemonStore } from "../stores/main";
+import { storeToRefs } from "pinia";
+
+const pokemonStore = usePokemonStore();
+let { data, error } = storeToRefs(pokemonStore);
 </script>
 
 <template>
   <div class="headerWrapper">
     <header>
-      <RouterLink to="/" class="homeLink">
+      <RouterLink
+        to="/"
+        class="homeLink"
+        @click="
+          data = null;
+          error = null;
+        "
+      >
         <SvgIcon />
       </RouterLink>
     </header>
