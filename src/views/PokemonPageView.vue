@@ -1,6 +1,7 @@
 <script setup>
 import { storeToRefs } from "pinia";
 import { usePokemonStore } from "../stores/main";
+
 const pokemonStore = usePokemonStore();
 const { data, statsArray } = storeToRefs(pokemonStore);
 </script>
@@ -48,6 +49,9 @@ const { data, statsArray } = storeToRefs(pokemonStore);
       </li>
     </ul>
   </section>
+  <section v-else>
+    <h1 class="selectTitle">Click on the Pokéball and select your Pokémon!</h1>
+  </section>
 </template>
 
 <style lang="scss">
@@ -55,6 +59,7 @@ const { data, statsArray } = storeToRefs(pokemonStore);
   display: grid;
   grid-template-columns: 1fr 1fr;
   font-family: $font;
+  padding: 1rem;
   .titlesWrapper {
     grid-column: 1/-1;
     text-align: center;
@@ -94,5 +99,13 @@ const { data, statsArray } = storeToRefs(pokemonStore);
       }
     }
   }
+}
+.selectTitle {
+  font-size: 1.5rem;
+  font-family: $font;
+  font-weight: 500;
+  color: $color-7;
+  text-align: center;
+  padding: 1rem;
 }
 </style>

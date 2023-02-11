@@ -8,12 +8,12 @@ import PokemonComponent from "../components/PokemonComponent.vue";
 
 const pokemonStore = usePokemonStore();
 const { fetchPokemon } = pokemonStore;
-const { data, loading, error } = storeToRefs(pokemonStore);
+const { data, loading, error, pokemonName } = storeToRefs(pokemonStore);
 </script>
 
 <template>
   <main v-if="!data && !loading" class="mainWrapper">
-    <form class="formWrapper" @submit.prevent="fetchPokemon">
+    <form class="formWrapper" @submit.prevent="fetchPokemon(pokemonName)">
       <InputComponent type="text" label="Choose your Pokémon!" id="pokemon" />
       <ButtonComponent text="Send!" />
       <div v-if="error" class="error">

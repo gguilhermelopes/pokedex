@@ -10,26 +10,26 @@ export const usePokemonStore = defineStore("pokemon", {
     evolutionDataArray: "",
   }),
   actions: {
-    async fetchPokemon() {
+    async fetchPokemon(pokemonName) {
       this.data = "";
       this.loading = true;
       try {
         const response = await fetch(
-          `https://pokeapi.co/api/v2/pokemon/${this.pokemonName
+          `https://pokeapi.co/api/v2/pokemon/${pokemonName
             .toLowerCase()
             .trimStart()}/`
         );
         this.data = await response.json();
+        console.log(response);
         this.statsArray = this.data.stats;
         this.loading = false;
 
         const speciesResponse = await fetch(
-          `https://pokeapi.co/api/v2/pokemon-species/${this.pokemonName
+          `https://pokeapi.co/api/v2/pokemon-species/${pokemonName
             .toLowerCase()
             .trimStart()}/`
         );
         const speciesData = await speciesResponse.json();
-
         const evolutionResponse = await fetch(speciesData.evolution_chain.url);
         const evolutionData = await evolutionResponse.json();
 

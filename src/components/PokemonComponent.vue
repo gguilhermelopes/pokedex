@@ -4,11 +4,17 @@ import { usePokemonStore } from "../stores/main";
 import { RouterLink } from "vue-router";
 
 const pokemonStore = usePokemonStore();
-const { data, evolutionDataArray } = storeToRefs(pokemonStore);
+const { fetchPokemon } = pokemonStore;
+let { data, evolutionDataArray, pokemonName } = storeToRefs(pokemonStore);
+
+function handleClick({ target }) {
+  pokemonName = target.innerText.toLowerCase();
+  fetchPokemon(pokemonName);
+}
 </script>
 
 <template>
-  <RouterLink :to="`/pokemon/${data.name}`">
+  <RouterLink :to="`/pokemon/details`">
     <div class="pokemonWrapper">
       <img
         class="pokemonImg"
@@ -22,7 +28,11 @@ const { data, evolutionDataArray } = storeToRefs(pokemonStore);
   </RouterLink>
   <h2 class="evolutionTitle">Evolution Chain</h2>
   <ul class="evolutionWrapper">
-    <li v-for="item in evolutionDataArray" :key="item.species_name">
+    <li
+      v-for="item in evolutionDataArray"
+      :key="item.species_name"
+      @click="handleClick"
+    >
       {{
         `${item.species_name.toUpperCase().charAt(0)}${item.species_name.slice(
           1
@@ -42,6 +52,7 @@ const { data, evolutionDataArray } = storeToRefs(pokemonStore);
   align-items: center;
   justify-content: center;
   margin: 1.75rem;
+  width: 15rem;
   cursor: pointer;
   .title {
     font-size: 1.75rem;
@@ -71,12 +82,8 @@ const { data, evolutionDataArray } = storeToRefs(pokemonStore);
     background-color: $color-2;
     padding: 0.75rem;
     border-radius: 0.5rem;
+    font-weight: 500;
     cursor: pointer;
-    h2 {
-      color: $color-7;
-      text-align: center;
-      font-weight: 500;
-    }
   }
   li:hover,
   li:focus {
