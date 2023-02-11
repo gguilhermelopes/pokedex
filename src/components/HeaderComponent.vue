@@ -45,4 +45,9 @@ let { data, error } = storeToRefs(pokemonStore);
     transform: rotate(720deg);
   }
 }
+@media (max-width: 500px) {
+  .headerWrapper {
+    padding: 0.5rem;
+  }
+}
 </style>
