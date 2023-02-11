@@ -20,9 +20,14 @@ const { data, evolutionDataArray } = storeToRefs(pokemonStore);
       </h1>
     </div>
   </RouterLink>
+  <h2 class="evolutionTitle">Evolution Chain</h2>
   <ul class="evolutionWrapper">
-    <li v-for="item in evolutionDataArray" :key="item.species.name">
-      {{ item.species.name }}
+    <li v-for="item in evolutionDataArray" :key="item.species_name">
+      {{
+        `${item.species_name.toUpperCase().charAt(0)}${item.species_name.slice(
+          1
+        )}`
+      }}
     </li>
   </ul>
 </template>
@@ -48,14 +53,23 @@ const { data, evolutionDataArray } = storeToRefs(pokemonStore);
 .pokemonWrapper:focus {
   background-color: $color-5;
 }
+.evolutionTitle {
+  text-align: center;
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: $color-7;
+}
 .evolutionWrapper {
   display: flex;
-  gap: 2rem;
+  gap: 1rem;
   align-items: center;
   justify-content: center;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+
   li {
     background-color: $color-2;
-    padding: 1.5rem;
+    padding: 0.75rem;
     border-radius: 0.5rem;
     cursor: pointer;
     h2 {

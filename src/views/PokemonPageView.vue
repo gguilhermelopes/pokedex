@@ -18,6 +18,13 @@ const { data, statsArray } = storeToRefs(pokemonStore);
             .toUpperCase()
             .charAt(0)}${data.types[0].type.name.slice(1)}`
         }}
+        {{
+          data.types[1]
+            ? `| ${data.types[1].type.name
+                .toUpperCase()
+                .charAt(0)}${data.types[1].type.name.slice(1)}`
+            : ""
+        }}
       </h2>
     </div>
     <div class="imgWrapper">
